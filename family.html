@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Family</title>
+
+<style>
+/* ===== BODY & BACKGROUND ===== */
+    body {
+        font-family: serif, sans-serif;
+        background-image: url("gambo/ocean.jpeg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        position: relative;
+        color: white;
+        text-align: center;
+    }
+
+/* ===== HEADER ===== */
+header {
+    background: #1C3C5A;
+    padding: 25px;
+}
+header h1 {
+    color: LightCyan;
+    margin: 0;
+}
+
+/* ===== NAVIGATION ===== */
+nav {
+    background: #1C3C5A;
+    width: 100%;
+    max-width: 1000px;
+    margin: 20px auto;
+    border-radius: 22px;
+    box-shadow: 2px 2px 20px rgba(0,0,0,0.3);
+}
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+nav ul li { margin: 10px; }
+nav ul li a {
+    color: LightCyan;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 22px;
+    transition: background 0.25s, color 0.25s;
+}
+nav ul li a:hover {
+    background: LightBlue;
+    color: black;
+}
+
+/* ===== MAIN CONTENT ===== */
+main {
+    background: rgba(35,57,80,0.7);
+    max-width: 900px;
+    margin: 35px auto;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 2px 2px 15px rgba(0,0,0,0.2);
+}
+
+/* ===== PROFILE INTRO ===== */
+.profile-container {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.rectangle-photo {
+    width: 100%;
+    max-width: 400px;
+    aspect-ratio: 16 / 9; /* landscape */
+    border-radius: 15px;
+    object-fit: cover;
+    border: 5px solid lightblue;
+    box-shadow: 0 6px 18px rgba(173,216,230,0.7);
+}
+.profile-text { max-width: 450px; text-align: left; }
+.profile-text h2 { color: floralwhite; }
+
+/* ===== FAMILY SECTION ===== */
+.family-section { margin-top: 40px; }
+.family-section h2 { color: floralwhite; margin-bottom: 20px; }
+
+/* ===== PARENTS BOX ===== */
+.parents-box {
+    background: rgba(255,255,255,0.12);
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+.parents-images {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+}
+.parent-card {
+    width: 180px;
+    height: 180px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(173,216,230,0.7);
+    border: 4px solid lightblue;
+}
+.parent-card img { width: 100%; height: 100%; object-fit: cover; }
+
+/* ===== SIBLINGS GRID ===== */
+.siblings-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 per row */
+    gap: 25px;
+    justify-items: center;
+    margin-top: 20px;
+}
+@media (max-width: 800px) {
+    .siblings-grid { grid-template-columns: 1fr; }
+}
+
+/* ===== FLIP CARD ===== */
+.flip-card { background-color: transparent; perspective: 1000px; }
+.flip-inner {
+    position: relative;
+    width: 100%;
+    max-width: 350px;
+    aspect-ratio: 16 / 9;
+    min-height: 180px;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    cursor: pointer;
+}
+.flip-card:hover .flip-inner { transform: rotateY(180deg); }
+.flip-front, .flip-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+}
+.flip-front {
+    background: rgba(255,255,255,0.15);
+    color: floralwhite;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.flip-front img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+}
+.flip-back {
+    background: rgba(28,60,90,0.85);
+    color: LightCyan;
+    transform: rotateY(180deg);
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.9em;
+}
+.flip-front:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 28px rgba(173,216,230,0.7);
+}
+
+/* ===== LIGHTBOX ===== */
+.lightbox {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    padding-top: 60px;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.9);
+}
+.lightbox-content {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 80%;
+}
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* ===== FOOTER ===== */
+    footer{
+        background:#1C3C5A;
+        color: LightCyan;
+        text-align: center;
+        padding: 15px 0;
+        width: 100%;
+        font-size: 0.9em;
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.3);
+        margin-top: auto;
+    }
+
+    footer p {
+        margin: 0;
+    }
+
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1><b>MEiMEi's PERSONAL WEBSITE</b></h1>
+</header>
+
+<nav>
+<ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="aboutme.html">About Me</a></li>
+    <li><a href="experience.html">Experience</a></li>
+    <li><a href="education.html">Education</a></li>
+    <li><a href="family.html">Family</a></li>
+    <li><a href="friends.html">Friends</a></li>
+    <li><a href="favourites.html">Favourites</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+</ul>
+</nav>
+
+<main>
+
+<div class="profile-container">
+    <img src="gambo/family.jpg" alt="family" class="rectangle-photo">
+
+    <div class="profile-text">
+        <h2>Let me introduce you with </h2>
+        <h2><b> SHAMZUL'S FAMILY</b> :)</h2>
+        <p><b>This is my family</b>, where my story begins. My biggest support system and my daily dose of laughter.
+        This page introduces my beloved family who always support and inspire me.</p>
+        <p style="font-size:45px;">🏡</p>
+    </div>
+</div>
+
+<div class="family-section">
+
+    <div class="parents-box">
+        <h2>My Parents 💖</h2>
+        <div class="parents-images">
+            <div class="parent-card"><img src="gambo/abah.jpg" alt="Father - [Name]"></div>
+            <div class="parent-card"><img src="gambo/mama.jpg" alt="Mother - [Name]"></div>
+        </div>
+        <p><b>Abah:</b> ZULKIPLI BIN SALLEH [Passed away in 2021]</p>
+        <p>Birthdate:<b> 12/1/1956</b></p>
+        <p><b>Mother:</b> SHAMSIAH BINTI ABDULLAH [Housewife]</p>
+        <p>Birthdate:<b> 18/11/1965</b></p>
+    </div>
+
+<h2>My Siblings 💫</h2>
+<div class="siblings-grid">
+
+    <!-- Repeat 10 siblings -->
+    <figure class="sibling-card">
+        <div class="flip-card">
+            <div class="flip-inner">
+
+            	<!-- FRONT: IMAGE ONLY -->
+                <div class="flip-front">
+                    <img src="gambo/kakak.jpg" alt="Sibling 1 - [NURUL HUDA SHAKILA BINTI ZULKIPLI]">
+                </div>
+
+            <!-- BACK: NAME + DETAILS -->
+            <div class="flip-back">
+                <h4>NURUL HUDA SHAKILA BINTI ZULKIPLI</h4>
+                <h4><b>1st Sibling</b></h4>
+                <p> Married with 3 daughters and 1 son</p>
+                <p>Birthdate:1/5/1985</p>
+            </div>
+            </div>
+        </div>
+    </figure>
+
+    <figure class="sibling-card">
+        <div class="flip-card">
+            <div class="flip-inner">
+            	
+
+            	<!-- FRONT: IMAGE ONLY -->
+                <div class="flip-front">
+                    <img src="gambo/kaknana.jpg" alt="Sibling 2 - [NURUL AIDA SHAZRINA BINTI ZULKIPLI]">
+                </div>
+
+            <!-- BACK: NAME + DETAILS -->
+            <div class="flip-back">
+                <h4>NURUL AIDA SHAZRINA BINTI ZULKIPLI</h4>
+                <p><b>2nd Sibling</b></p>
+                <p> Married with 1 daughter</p>
+                <p>Birthdate:26/7/1986</p>
+            </div>
+            </div>
+        </div>
+    </figure>
+
+    <figure class="sibling-card">
+        <div class="flip-card">
+            <div class="flip-inner">
+
+            	
+            	<!-- FRONT: IMAGE ONLY -->
+                <div class="flip-front">
+                    <img src="gambo/kakya.jpg" alt="Sibling 3 - [NURUL ALIA SHAKIRIN BINTI ZULKIPLI]">
+                </div>
+
+            <!-- BACK: NAME + DETAILS -->
+            <div class="flip-back">
+                <h4>NURUL ALIA SHAKIRIN BINTI ZULKIPLI</h4>
+                <p><b>3rd Sibling</b></p>
+               	<p> Degree in Law & Government Employee</p>
+               	<p>Birthdate:18/5/1988</p>
+            </div>
+            </div>
+        </div>
+    </figure>
+
+    <figure class="sibling-card">
+        <div class="flip-card">
+            <div class="flip-inner">
+
+            	
+            	<!-- FRONT: IMAGE ONLY -->
+                <div class="flip-front">
+                    <img src="gambo/kakjaha.png" alt="Sibling 4 - [NURUL NAJHA SHOLEHAH BINTI ZULKIPLI]">
+                </div>
+
+            <!-- BACK: NAME + DETAILS -->
+            <div class="flip-back">
+                <h4>NURUL NAJHA SHOLEHAH BINTI ZULKIPLI</h4>
+                <p><b>4th Sibling</b></p>
+                <p> Married with 2 daughters</p>
+                <p>Birthdate:5/1/1990</p>
+            </div>
+            </div>
+        </div>
+    </figure>
+
+    <figure class="sibling-card">
+        <div class="flip-card">
+            <div class="flip-inner">
+
+            	
+            	<!-- FRONT: IMAGE ONLY -->
+                <div class="flip-front">
+                    <img src="gambo/kakain.jpg" alt="Sibling 5 - [NURUL AIN SHAFIQA BINTI ZULKIPLI]">
+                </div>
+
+            <!-- BACK: NAME + DETAILS -->
+            <div class="flip-back">
+                <h4>NURUL AIN SHAFIQA BINTI ZULKIPLI</h4>
+                <p><b>5th Sibling</b></p>
+                <p> Married with 3 daughters and 1 son</p>
+                <p>Birthdate:18/9/1992</p>
+            </div>
+            </div>
+        </div>
+    </figure>
+
+    <figure class="sibling-card">
+        <div class="flip-card">
+            <div class="flip-inner">
+            	
+
+            	<!-- FRONT: IMAGE ONLY -->
+                <div class="flip-front">
+                    <img src="gambo/amir.jpg" alt="Sibling 6 - [AMIR FIRDAUS BIN ZULKIPLI]">
+                </div>
+
+            <!-- BACK: NAME + DETAILS -->
+            <div class="flip-back">
+                <h4>AMIR FIRDAUS BIN ZULKIPLI</h4>
+                <p><b>6th Sibling</b></p>
+                <p>Degree in mechanical facturing and worked as manufracturing </p>
+                <p>Birthdate:8/9/1997</p>
+            </div>
+            </div>
+        </div>
+    </figure>
+
+    <figure class="sibling-card">
+        <div class="flip-card">
+            <div class="flip-inner">
+            	
+
+            	<!-- FRONT: IMAGE ONLY -->
+                <div class="flip-front">
+                    <img src="gambo/ijah.jpg" alt="Sibling 7 - [NURUL EZZAH SHAHIRA BINTI ZULKIPLI]">
+                </div>
+
+            <!-- BACK: NAME + DETAILS -->
+            <div class="flip-back">
+                <h4>NURUL EZZAH SHAHIRA BINTI ZULKIPLI</h4>
+                <p><b>7th Sibling</b></p>
+                <p>Government Employee </p>
+                <p>Birthdate:8/9/1999</p>
+            </div>
+            </div>
+        </div>
+    </figure>
+
+    <figure class="sibling-card">
+        <div class="flip-card">
+            <div class="flip-inner">
+
+            	
+            	<!-- FRONT: IMAGE ONLY -->
+                <div class="flip-front">
+                    <img src="gambo/alis.jpg" alt="Sibling 8 - [NURUL ALIS SHAFIERA BINTI ZULKIPLI]">
+                </div>
+
+            <!-- BACK: NAME + DETAILS -->
+            <div class="flip-back">
+                <h4>NURUL ALIS SHAFIERA BINTI ZULKIPLI</h4>
+                <p><b>8th Sibling</b></p>
+                <p>Degree in Accounting</p>
+                <p>Birthdate:13/10/2002</p>
+            </div>
+            </div>
+        </div>
+    </figure>
+
+    <figure class="sibling-card">
+        <div class="flip-card">
+            <div class="flip-inner">
+
+            	
+            	<!-- FRONT: IMAGE ONLY -->
+                <div class="flip-front">
+                    <img src="gambo/mimi.jpg" alt="Sibling 9 - [NURUL IMANI SHAMIMI BINTI ZULKIPLI]">
+                </div>
+
+            <!-- BACK: NAME + DETAILS -->
+            <div class="flip-back">
+                <h4>NURUL IMANI SHAMIMI BINTI ZULKIPLI</h4>
+                <p><b>9th Sibling</b></p>
+                <p>Diploma in Information Management</p>
+                <p>Birthdate:13/5/2005</p>
+            </div>
+            </div>
+        </div>
+    </figure>
+
+    <figure class="sibling-card">
+        <div class="flip-card">
+            <div class="flip-inner">
+            	
+            	<!-- FRONT: IMAGE ONLY -->
+                <div class="flip-front">
+                    <img src="gambo/aqis.jpg" alt="Sibling 10 - [NURUL BALQIS SHAYYIDAH BINTI ZULKIPLI]">
+                </div>
+
+            <!-- BACK: NAME + DETAILS -->
+            <div class="flip-back">
+                <h4>NURUL BALQIS SHAYYIDAH BINTI ZULKIPLI</h4>
+                <h4><b>10th Sibling</b></h4>
+                <p> High school</p>
+                <p>Birthdate:7/3/2008</p>
+            </div>
+            </div>
+        </div>
+    </figure>
+
+</div>
+</div>
+</main>
+
+<!-- LIGHTBOX MODAL -->
+<div id="lightbox" class="lightbox">
+  <span class="close">&times;</span>
+  <img class="lightbox-content" id="lightbox-img">
+</div>
+
+<footer>
+<p>&copy; 2025 This website is for educational purpose only | Nurul Imani Shamimi Binti Zulkipli</p>
+</footer>
+
+<script>
+// Lightbox JS for all images
+const images = document.querySelectorAll('img');
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+const closeBtn = document.querySelector('.close');
+
+images.forEach(img => {
+    img.addEventListener('click', () => {
+        lightbox.style.display = 'block';
+        lightboxImg.src = img.src;
+    });
+});
+
+closeBtn.addEventListener('click', () => {
+    lightbox.style.display = 'none';
+});
+window.addEventListener('click', (e) => {
+    if (e.target == lightbox) lightbox.style.display = 'none';
+});
+</script>
+
+</body>
+</html>

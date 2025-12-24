@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Education</title>
+
+<style>
+
+    body {
+        font-family: serif, sans-serif;
+        background-image: url("gambo/ocean.jpeg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        position: relative;
+        color: white;
+        text-align: center;
+    }
+
+    header {
+        background: #1C3C5A;
+        text-align: center;
+        padding: 25px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+
+    header h1 {
+        color: LightCyan;
+        margin: 0;
+    }
+
+    nav {
+        background: #1C3C5A;
+        width: 100%;
+        max-width: 1000px;
+        margin: 20px auto;
+        border-radius: 22px;
+        box-shadow: 2px 2px 20px rgba(0,0,0,0.3);
+    }
+
+    nav ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 5px 10px;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    nav ul li {
+        margin: 10px;
+    }
+
+    nav ul li a {
+        color: LightCyan;
+        text-decoration: none;
+        padding: 8px 16px;
+        border-radius: 22px;
+        transition: background 0.25s, color 0.25s;
+    }
+
+    nav ul li a:hover {
+        background: LightBlue;
+        color: black;
+    }
+
+    main {
+        width: 100%;
+        max-width: 900px;
+        margin: 20px auto 60px;
+        padding: 20px;
+        border-radius: 15px;
+    }
+
+    /* TIMELINE */
+    .timeline-container {
+        width: 90%;
+        margin: 50px auto;
+        position: relative;
+    }
+
+    /* vertical line */
+    .timeline-container:before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 0;
+        width: 4px;
+        height: 100%;
+        background: rgba(255,255,255,0.5);
+        transform: translateX(-50%);
+        border-radius: 10px;
+    }
+
+    .timeline-item {
+        display: flex;
+        align-items: center;
+        margin: 50px 0;
+        position: relative;
+    }
+
+    .timeline-item.left { flex-direction: row; }
+    .timeline-item.right { flex-direction: row-reverse; }
+
+    /* white dot */
+    .timeline-item:before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        width: 15px;
+        height: 15px;
+        background: white;
+        border-radius: 50%;
+        transform: translateX(-50%);
+        border: 3px solid #87CEEB;
+    }
+
+    /* image */
+    .journey-img {
+        width: 230px;
+        height: 230px;
+        object-fit: cover;
+        border-radius: 10px;
+        border: 4px solid rgba(255,255,255,0.6);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+
+    /* text box */
+    .text-box {
+        width: 45%;
+        padding: 20px;
+        background: rgba(255,255,255,0.17);
+        backdrop-filter: blur(30px);
+        border-radius: 15px;
+        margin: 0 20px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.50);
+        text-align: left;
+    }
+
+    .text-box h3 {
+        font-size: 24px;
+        font-weight: bold;
+        color: #1C3C5A;
+        font-family: "Georgia", serif;
+    }
+
+    .text-box h3 span {
+        font-size: 25px;
+        font-style: italic;
+        margin-left: 10px;
+    }
+
+    .text-box p {
+        color: black;
+        line-height: 1.0;
+    }
+
+    /* mobile responsive */
+    @media screen and (max-width: 768px) {
+
+        .timeline-container:before {
+            left: 10px;
+        }
+
+        .timeline-item, .timeline-item.left, .timeline-item.right {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .timeline-item:before {
+            left: 10px;
+            top: -10px;
+        }
+
+        .text-box {
+            width: 90%;
+            text-align: center;
+        }
+
+        .journey-img {
+            margin-bottom: 20px;
+        }
+    }
+
+
+    /* FOOTER */
+    footer{
+        background:#1C3C5A;
+        color: LightCyan;
+        text-align: center;
+        padding: 15px 0;
+        width: 100%;
+        font-size: 0.9em;
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.3);
+        margin-top: auto;
+    }
+
+    footer p {
+        margin: 0;
+    }
+
+
+/* LIGHT SHAKE ANIMATION */
+@keyframes lightShake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-2px); }
+    50% { transform: translateX(2px); }
+    75% { transform: translateX(-2px); }
+    100% { transform: translateX(0); }
+}
+
+/* GENTLE ZOOM + DARK GLOW HOVER EFFECT */
+.journey-img,
+.text-box {
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.journey-img:hover,
+.text-box:hover {
+    transform: scale(1.04);
+    box-shadow: 0 0 28px rgba(0, 0, 0, 0.6);
+}
+
+</style>
+</head>
+
+<body>
+<header>
+    <h1><b>MEiMEi's PERSONAL WEBSITE</b></h1>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="aboutme.html">About Me</a></li>
+        <li><a href="experience.html">Experience</a></li>
+        <li><a href="education.html">Education</a></li>
+        <li><a href="family.html">Family</a></li>
+        <li><a href="friends.html">Friends</a></li>
+        <li><a href="favourites.html">Favourites</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+    </ul>
+</nav>
+
+<main>
+
+    <div class="timeline-container">
+        <div class="timeline-item left">
+            <img src="gambo/tadika.jpg" class="journey-img">
+            <div class="text-box">
+                <h3>2009-2011 <span>Kindergarten</span></h3>
+                <p>Name: Tabika Kemas</p>
+                <p>
+                    I began my educational journey in kindergarten, where I was introduced to basic learning through structured activities and play.
+                </p>
+            </div>
+        </div>
+
+        
+        <div class="timeline-item right">
+            <img src="gambo/sk.jpg" class="journey-img">
+            <div class="text-box">
+                <h3>2012-2017 <span>Primary School</span></h3>
+                <p>Name: Sekolah Kebangsaan Tok Jiring</p>
+                <p>
+                    I continued my education in primary school, where i developed essential learning skills.This period strengthened my interest in learning and my ability to comunicate and work with others.
+                </p>
+            </div>
+        </div>
+
+        
+        <div class="timeline-item left">
+            <img src="gambo/smk.jpg" class="journey-img">
+            <div class="text-box">
+                <h3>2018-2022 <span>High School</span></h3>
+                <p>Name: Sekolah Menengah Kebangsaan Kompleks Tembesu</p>
+                <p>
+                    During my high school years, i held various leadership position in club, unit uniformed and sport activities. I also served as a school prefect, which helped me develop strong leadership, responsibility and communication skills.
+                </p>
+            </div>
+        </div>
+
+
+        <div class="timeline-item right">
+            <img src="gambo/uni.png" class="journey-img">
+            <div class="text-box">
+                <h3>2023-Present <span>University</span></h3>
+                <p>Name: Universiti Teknologi MARA (UiTM)</p>
+                <p>
+                    I am currently pursuing my studies at UiTM, Machang, Kelantan for diploma, majoring in Information Management. 
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+</main>
+
+<footer>
+    <p>&copy; 2025 This website is for educational purpose only. | Nurul Imani Shamimi Binti Zulkipli</p>
+</footer>
+
+</body>
+</html>

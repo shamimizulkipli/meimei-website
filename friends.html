@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Friends</title>
+<style>
+/* ===== Body & Background ===== */
+ body {
+        font-family: serif, sans-serif;
+        background-image: url("gambo/ocean.jpeg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        position: relative;
+        color: white;
+        text-align: center;
+    }
+
+/* Header */
+header {
+    background: #1C3C5A;
+    text-align: center;
+    padding: 25px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+header h1 { color: LightCyan; margin: 0; }
+
+/* Navigation */
+nav {
+    background: #1C3C5A;
+    width: 100%;
+    max-width: 1000px;
+    margin: 20px auto;
+    border-radius: 22px;
+    box-shadow: 2px 2px 20px rgba(0,0,0,0.3);
+}
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+nav ul li { margin: 10px; }
+nav ul li a {
+    color: LightCyan;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 22px;
+    transition: background 0.25s, color 0.25s;
+}
+nav ul li a:hover {
+    background: LightBlue;
+    color: black;
+}
+
+/* Main Carousel Section */
+main {
+    width: 100%;
+    max-width: 800px;
+    margin: 35px auto;
+    padding: 30px;
+    background: rgba(35,57,80,0.7);
+    border-radius: 15px;
+    box-shadow: 2px 2px 15px rgba(0,0,0,0.2);
+}
+
+/* Carousel Container */
+.carousel-container {
+    perspective: 1200px;
+    width: 100%;
+    max-width: 700px;
+    height: 500px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.carousel {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform-style: preserve-3d;
+    transform: translate(-50%, -50%) rotateY(0deg);
+    transition: transform 1s;
+}
+
+/* Carousel Cards */
+.carousel-card {
+    position: absolute;
+    width: 60%;
+    height: 70%;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+    backface-visibility: hidden;
+    transition: transform 0.5s, box-shadow 0.5s;
+    cursor: pointer;
+    left: 50%;
+    top: 50%;
+    transform-style: preserve-3d;
+    transform-origin: center center;
+}
+
+.carousel-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.carousel-card:hover {
+    transform: translate(-50%, -50%) scale(1.15) translateZ(80px);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.9);
+}
+
+/* Card Text */
+.card-text {
+    position: absolute;
+    bottom: 15px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: white;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.7);
+}
+
+/* Carousel Buttons */
+.nav-buttons {
+    margin-top: 20px;
+}
+.nav-buttons button {
+    background: LightBlue;
+    border: none;
+    padding: 10px 20px;
+    margin: 0 10px;
+    border-radius: 15px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+.nav-buttons button:hover {
+    background: #1C3C5A;
+    color: white;
+}
+
+/* Footer */
+   	footer{
+        background:#1C3C5A;
+        color: LightCyan;
+        text-align: center;
+        padding: 15px 0;
+        width: 100%;
+        font-size: 0.9em;
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.3);
+        margin-top: auto;
+    }
+
+    footer p {
+        margin: 0;
+    }
+
+/* Responsive */
+@media (max-width: 700px) {
+    .carousel-card { width: 80%; height: 60%; }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <h1><b>MEiMEi's PERSONAL WEBSITE</b></h1>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="aboutme.html">About Me</a></li>
+        <li><a href="experience.html">Experience</a></li>
+        <li><a href="education.html">Education</a></li>
+        <li><a href="family.html">Family</a></li>
+        <li><a href="friends.html">Friends</a></li>
+        <li><a href="favourites.html">Favourites</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+    </ul>
+</nav>
+
+<main>
+    <h2>𑣲My Comfort Zone ⋆.𐙚 ̊  </h2>
+    <h2>Meet the friends who add color to my world! From silly moments to epic adventures, these are the ones who make every day more fun.</h2>
+    <div class="carousel-container">
+        <div class="carousel" id="carousel">
+            <div class="carousel-card"><img src="gambo/bestie.jpg"><div class="card-text">Bestie!!</div></div>
+            <div class="carousel-card"><img src="gambo/classmate.jpg"><div class="card-text">Classmate?</div></div>
+            <div class="carousel-card"><img src="gambo/schoolmate.jpg"><div class="card-text">Schoolmate :]</div></div>
+            <div class="carousel-card"><img src="gambo/roomates.jpg"><div class="card-text">Roomates 🕶</div></div>
+            <div class="carousel-card"><img src="gambo/myclone.jpg"><div class="card-text">My Clone 👽</div></div>
+        </div>
+    </div>
+    <div class="nav-buttons">
+        <button onclick="rotateCarousel(-1)">&#8592; Prev</button>
+        <button onclick="rotateCarousel(1)">Next &#8594;</button>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2025 This website is for educational purpose only. | Nurul Imani Shamimi Binti Zulkipli</p>
+</footer>
+
+<script>
+const carousel = document.getElementById('carousel');
+const cards = carousel.children;
+const total = cards.length;
+let angle = 360 / total;
+let current = 0;
+
+// Position cards in a centered 3D circle
+for (let i = 0; i < total; i++) {
+    cards[i].style.transform = `translate(-50%, -50%) rotateY(${i * angle}deg) translateZ(350px)`;
+}
+
+// Rotate carousel manually on button click
+function rotateCarousel(dir) {
+    current += dir;
+    carousel.style.transform = `translate(-50%, -50%) rotateY(${-current * angle}deg)`;
+}
+</script>
+
+</body>
+</html>

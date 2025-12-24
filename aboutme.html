@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>About Me</title>
+    <style>
+        /* Background Image */
+        body {
+            font-family: serif, sans-serif;
+            background-image: url("gambo/ocean.jpeg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        /* Faded Background Overlay */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(173, 216, 230, 0.8);
+            z-index: -2; /* behind everything */
+        }
+
+        header, nav, main, footer {
+            position: relative; /* ensure content stays above snow */
+            z-index: 1;
+        }
+
+        /* Header */
+        header {
+            background: #1C3C5A;
+            text-align: center;
+            padding: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        header h1 {
+            color: LightCyan;
+            margin: 0;
+        }
+
+        /* Navigation */
+        nav {
+            background: #1C3C5A;
+            width: 100%;
+            max-width: 1000px;
+            margin: 20px auto;
+            border-radius: 22px;
+            box-shadow: 2px 2px 20px rgba(0,0,0,0.3);
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 5px 10px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        nav ul li {
+            margin: 10px;
+        }
+        nav ul li a {
+            color: LightCyan;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 22px;
+            transition: background 0.25s, color 0.25s;
+        }
+        nav ul li a:hover {
+            background: LightBlue;
+            color: black;
+        }
+
+        /* Main layout */
+        main {
+            width: 90%;
+            max-width: 1000px;
+            margin: 40px auto;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .profile-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            background: rgba(35,57,80,0.7);
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .circle-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid lightblue;
+            box-shadow: 0 4px 12px rgba(173, 216, 230, 0.7);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .profile-text {
+            max-width: 450px;
+            text-align: left;
+            color: #f8f9ff;
+        }
+        .profile-text h2 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            color: floralwhite;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .info-box {
+            background: rgba(255,255,255,0.2);
+            padding: 20px;
+            border-radius: 20px;
+            backdrop-filter: blur(7px);
+            color: black;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+            text-align: left;
+        }
+        .info-box h3 {
+            margin-top: 0;
+            color: #1C3C5A;
+        }
+
+    footer{
+        background:#1C3C5A;
+        color: LightCyan;
+        text-align: center;
+        padding: 15px 0;
+        width: 100%;
+        font-size: 0.9em;
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.3);
+        margin-top: auto;
+    }
+
+    footer p {
+        margin: 0;
+    }
+
+        /* Snow Background */
+        .snow-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none; /* clicks go through */
+            z-index: -1; /* behind everything */
+            overflow: hidden;
+        }
+
+        .snow-background .sparkle-snow {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: #d8ecff;
+            box-shadow: 0 0 8px rgba(180, 220, 255, 0.7);
+            border-radius: 50%;
+            animation: fallSnow linear infinite;
+        }
+
+        .snow-background .sparkle-snow::before {
+            content: "";
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: white;
+            border-radius: 50%;
+            top: 3px;
+            left: 4px;
+            opacity: 0.8;
+        }
+
+        @keyframes fallSnow {
+            0% { transform: translateY(-20px); opacity: 0.8; }
+            50% { opacity: 1; }
+            100% { transform: translateY(110vh); opacity: 0.7; }
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Snow background, behind everything -->
+    <div class="snow-background">
+        <div class="sparkle-snow" style="left:5%; animation-duration:5s; animation-delay:0s;"></div>
+        <div class="sparkle-snow" style="left:15%; animation-duration:6s; animation-delay:1.2s;"></div>
+        <div class="sparkle-snow" style="left:25%; animation-duration:4.5s; animation-delay:0.8s;"></div>
+        <div class="sparkle-snow" style="left:35%; animation-duration:7s; animation-delay:2s;"></div>
+        <div class="sparkle-snow" style="left:45%; animation-duration:5.5s; animation-delay:1.5s;"></div>
+        <div class="sparkle-snow" style="left:55%; animation-duration:6.5s; animation-delay:3s;"></div>
+        <div class="sparkle-snow" style="left:65%; animation-duration:4s; animation-delay:0.4s;"></div>
+        <div class="sparkle-snow" style="left:75%; animation-duration:5.7s; animation-delay:2.2s;"></div>
+        <div class="sparkle-snow" style="left:85%; animation-duration:4.8s; animation-delay:1.1s;"></div>
+        <div class="sparkle-snow" style="left:95%; animation-duration:5.9s; animation-delay:0.6s;"></div>
+        <!-- add more for dense snow -->
+    </div>
+
+    <header>
+        <h1>MEiMEi's PERSONAL WEBSITE</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="aboutme.html">About Me</a></li>
+            <li><a href="experience.html">Experience</a></li>
+            <li><a href="education.html">Education</a></li>
+            <li><a href="family.html">Family</a></li>
+            <li><a href="friends.html">Friends</a></li>
+            <li><a href="favourites.html">Favourites</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="profile-container">
+            <img src="gambo/gambar sendiri.jpg" class="circle-photo">
+            <div class="profile-text">
+                <h2>Hi, I'm MeiMei! 💙</h2>
+                <p>
+                    My name is <b>Nurul Imani Shamimi Binti Zulkipli</b> and I’m so glad you’ve found your way here! This page is where I share who I am, what I love, and the experiences that make life meaningful. Like the calm waves of the sea, I hope this space brings a little peace and inspiration to your day. Thank you for visiting my little corner of creativity.
+                </p>
+            </div>
+        </div>
+
+        <div class="info-grid">
+            <div class="info-box">
+                <h3>🌸 Basic Info</h3>
+                <p>• Age: 20 years old ✨</p>
+                <p>• From: Kuala Terengganu 🐢💨</p>
+                <p>• My Goal: To be someone my parents and family can be proud of.</p>
+                <p>• Personality: Introvert (but I become more expressive when I’m with those I feel comfortable with)
+
+            </div>
+
+            <div class="info-box">
+                <h3>💙 Interests</h3>
+                <p>• Watching Kdrama</p>
+                <p>• Listening music 🎶</p>
+                <p>• Nature 🏖</p>
+            </div>
+
+            <div class="info-box">
+                <h3>📘 What I Love</h3>
+                <p>• Cats 🐾</p>
+                <p>• Blue & pastel colors</p>
+                <p>• Yapping with my comfort friends 🗫</p>
+            </div>
+
+            <div class="info-box">
+                <h3>📞 Hobbies</h3>
+                <p>• Playing Badminton 🏸</p>
+                <p>• Brisk Walk</p>
+                <p>• Collect cute keyring</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 This website is for educational purpose only. | Nurul Imani Shamimi Binti Zulkipli</p>
+    </footer>
+</body>
+</html>
